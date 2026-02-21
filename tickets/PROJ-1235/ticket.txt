@@ -1,0 +1,43 @@
+Steps to Reproduce:
+
+Precondition: restart the VC applicaiton
+
+ Start assisted procedure
+
+ Procceed untill reaching the stage of tool tip calibration
+
+ calibrate keratome 1.14mm
+
+slide to approve calibration completion and observe the message note
+
+
+
+Actual :
+
+1- Calibration for karatome 1.14 passeD successfully
+
+2- message did contain the karatome 1.14  as a tool missing calibration
+
+Expected :
+
+1- Calibration for karatome 1.14 passes successfully
+
+2- message note don’t contain the karatome 1.14  as a tool missing calibration
+
+Additional Information
+
+Log Timestamp: ~17:04
+
+Embedded Version: NA
+
+VC Version: PIVOTAL V91
+
+FPGA Version: NA
+
+Ubuntu Image Version: NA
+
+LOG Location:
+
+https://drive.google.com/drive/folders/16vViqK_Py1ocIYtwmWAr1wz1JRUrnYpO?usp=sharingConnect your Google account
+
+Reproducibility: Always

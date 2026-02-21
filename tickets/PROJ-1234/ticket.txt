@@ -1,0 +1,25 @@
+After detaching from the clutch/MC drop, the purple pen disappeared(FBT-1950). Despite being in a detached, it was still possible to open and close the Utrata. This issue occurred only when the purple pen was not displayed.
+
+Steps to Reproduce:
+
+Start the procedure.
+
+Engage with the Utrata.
+
+Intentionally detach from the clutch/MC drop.
+
+Expected Result:
+
+The purple pen should appear upon detachment.
+
+Control of the Utrata should be disabled while detached.
+
+Actual Result:
+
+The purple pen did not appear (only the path was visible).
+
+It was still possible to open and close the Utrata while detached.
+
+Additional information:
+
+Time stamps: 10:35
