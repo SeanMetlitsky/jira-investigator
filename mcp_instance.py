@@ -101,8 +101,14 @@ WORKFLOW:
     - What the code was supposed to do vs. what it actually did
 
     ### Suggested Fix
-    Concrete code change that would prevent recurrence. Be specific —
-    name the file, function, and what condition/logic to change.
+    Before proposing a fix, use search_code and read_code_segment to
+    understand the broader design around the faulty code — look at the
+    class structure, related methods, state machines, and how similar
+    cases are already handled elsewhere. Then propose a fix that is
+    consistent with the existing architecture and patterns. Do NOT
+    suggest a narrow patch or special-case hack — the fix should feel
+    like it belongs in the codebase. Be specific: name the file,
+    function, and what condition/logic to change.
 
 GUIDELINES:
 - Be methodical. State your current hypothesis and what evidence you're
