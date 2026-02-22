@@ -160,12 +160,13 @@ def _remote_get_attachments(ticket_id: str, filename_filter: str | None) -> str:
     for attachment in matched:
         url = attachment["content"]
         dest = WORK_DIR / attachment["filename"]
-        dl = requests.get(url, auth=(JIRA_EMAIL, JIRA_API_TOKEN), timeout=120)
+        dl = requests.get(url, auth=(JIRA_EMAIL, JIRA_API_TOKEN), timeout=120, stream=True)
         if dl.status_code != 200:
             downloaded.append(f"  {attachment['filename']}: download failed ({dl.status_code})")
             continue
         with open(dest, "wb") as f:
-            f.write(dl.content)
+            for chunk in dl.iter_content(chunk_size=8192):
+                f.write(chunk)
         downloaded.append(f"  {attachment['filename']} → {dest}")
 
     return f"Downloaded {len(downloaded)} file(s):\n" + "\n".join(downloaded)

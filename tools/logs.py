@@ -3,6 +3,7 @@
 import os
 import re
 import subprocess
+import zipfile
 from collections import Counter
 from datetime import datetime, timedelta
 from pathlib import Path
@@ -117,10 +118,27 @@ def parse_log(log_path: str) -> str:
 
     Runs the proprietary parser inside Docker. If a .txt already exists
     from a previous run, skips parsing. You can also pass a .txt path directly.
+    Accepts .zip files — extracts the first .log file found inside.
     """
     path = Path(log_path)
     if not path.exists():
         return f"Error: file not found: {path}"
+
+    # Handle zip files: extract the first .log file
+    if path.suffix == ".zip":
+        if not zipfile.is_zipfile(path):
+            return f"Error: not a valid zip file: {path}"
+        with zipfile.ZipFile(path, "r") as zf:
+            log_names = [n for n in zf.namelist() if n.endswith(".log")]
+            if not log_names:
+                return f"Error: no .log files found inside {path.name}"
+            extract_name = log_names[0]
+            extract_dest = path.parent / Path(extract_name).name
+            if not extract_dest.exists():
+                with zf.open(extract_name) as src, open(extract_dest, "wb") as dst:
+                    while chunk := src.read(8192):
+                        dst.write(chunk)
+            path = extract_dest
 
     raw_txt = path if path.suffix == ".txt" else path.with_suffix(".txt")
 

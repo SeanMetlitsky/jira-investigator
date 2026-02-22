@@ -12,9 +12,9 @@ WORKFLOW:
    reporter's description, and what physical behavior was observed.
 
 2. GET THE LOGS.
-   Use get_jira_attachments with a "*.log" filter to find the log file
-   attached to the ticket. Then call parse_log to convert the binary log
-   to readable text.
+   Use get_jira_attachments to list attachments on the ticket. Look for
+   .log or .zip files. Then call parse_log on the file — it handles
+   both .log and .zip (extracts the .log from inside automatically).
 
 3. ORIENT YOURSELF.
    Call list_log_timestamps on the parsed file to see the time range and
